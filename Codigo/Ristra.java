@@ -186,22 +186,22 @@ public class Ristra implements IRistra {
             MetodosAuxiliares ayuda = new MetodosAuxiliares();
             int controlador = 0;
             int bolasJuntas = 0;
-            if (posicion == longitud()) {//dispara al final del array y cuenta las bolas del mismo color que hay a su lado
-                ristraBolas.add(bola);
-
-                acumulador2 = ayuda.contarBolasPorDelante(posicion, ristraBolas, acumulador2);
-                controlador = acumulador2 - 1; System.out.println("controlador: " + posicion + "-" + controlador);
-                bolasJuntas = (acumulador + acumulador2 - 1);System.out.println("acumuladorBolasExplotan2 " + bolasJuntas);//restamos 1 para no contar dos veces la posicion del elemento introducido
-
-                if (bolasJuntas >= 3) {//hace explotar el conjunto de bolas si al disparar hay 3 o mas bolas iguales juntas
-                    explotar(posicion, acumulador, acumulador2); System.out.println("explotando2");
-//                    puntos = puntos + puntuacion(bolasJuntas) + 5;
-//                    System.out.println("puntua1:");
-                    Bola bolaComodin = ristraBolas.get(posicion - controlador);
-                    ristraBolas.remove(posicion - controlador);
-                    concatenarExplosiones(bolaComodin, posicion - controlador);
-                }
-            } else {
+//            if (posicion == longitud()) {//dispara al final del array y cuenta las bolas del mismo color que hay a su lado
+//                ristraBolas.add(bola);
+//
+//                acumulador2 = ayuda.contarBolasPorDelante(posicion, ristraBolas, acumulador2);
+//                controlador = acumulador2 - 1; System.out.println("controlador: " + posicion + "-" + controlador);
+//                bolasJuntas = (acumulador + acumulador2 - 1);System.out.println("acumuladorBolasExplotan2 " + bolasJuntas);//restamos 1 para no contar dos veces la posicion del elemento introducido
+//
+//                if (bolasJuntas >= 3) {//hace explotar el conjunto de bolas si al disparar hay 3 o mas bolas iguales juntas
+//                    explotar(posicion, acumulador, acumulador2); System.out.println("explotando2");
+////                    puntos = puntos + puntuacion(bolasJuntas) + 5;
+////                    System.out.println("puntua1:");
+//                    Bola bolaComodin = ristraBolas.get(posicion - controlador);
+//                    ristraBolas.remove(posicion - controlador);
+//                    concatenarExplosiones(bolaComodin, posicion - controlador);
+//                }
+//            } else {
 
                 ristraBolas.add(posicion, bola);
                 int longitud = longitud();
@@ -211,8 +211,9 @@ public class Ristra implements IRistra {
                     acumulador2 = ayuda.contarBolasPorDelante(posicion, ristraBolas, acumulador2);//cuenta las bolas que hay antes del disparo iguales a la bola disparada(cuenta la bola disparada)
                     controlador = acumulador2 - 1;System.out.println("controlador: " + posicion + "-" + controlador);
                     bolasJuntas = (acumulador + acumulador2 - 1);System.out.println("acumuladorBolasJuntas2 " + bolasJuntas);//restamos 1 para no contar dos veces la posicion del elemento introducido
-
-                    if (bolasJuntas >= 3) {//hace explotar el conjunto de bolas si al disparar hay 3 o mas bolas iguales juntas
+                    System.out.println("izq: "+(acumulador-1)+" der: "+(acumulador2-1));
+                    
+                    if ((bolasJuntas >= 3)&&(acumulador-1>=0)&&(acumulador2-1!=0)) {//hace explotar el conjunto de bolas si al disparar hay 3 o mas bolas iguales juntas
                         explotar(posicion, acumulador, acumulador2);System.out.println("explotando3");
 //                        puntos = puntos + puntuacion(bolasJuntas) + 5;System.out.println("puntua2:");
                         Bola bolaComodin = ristraBolas.get(posicion - controlador);
@@ -221,7 +222,7 @@ public class Ristra implements IRistra {
 
                     }
                 }
-            }
+//            }
 
         }
 
